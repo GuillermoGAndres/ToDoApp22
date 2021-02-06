@@ -15,12 +15,7 @@
 	padding: 7px;
 	border-radius: 5px;
 	border: none;
-	/* border: rgba(100, 148, 237, 0.418) solid 2px; */
 }
-/* #taskName:focus,
-#taskName:hover {
-	border: white solid 2px;
-} */
 
 .deleteTaskBtn {
 	background: transparent;
@@ -31,4 +26,14 @@
 
 .deleteTaskBtn:hover {
 	color: red;
+}
+table {
+	padding: 0px 2em;
+	width: 100%;
+}
+
+td:nth-child(1),
+td:nth-child(3) {
+	width: 5%;
+	text-align: center;
 }
