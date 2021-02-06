@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+body {
+	font-family: 'Sriracha', cursive;
+	margin: 0;
+}
+#addTask {
+	background: white;
+	color: cornflowerblue;
+	border: none;
+	padding: 8px;
+	border-radius: 5px;
+	outline: none;
+}
+#addTask:hover,
+#addTask:focus {
+	background: rgb(240, 240, 240);
+}
+#taskName {
+	outline: none;
+	padding: 7px;
+	border-radius: 5px;
+	border: none;
+}
+
+.deleteTaskBtn {
+	background: transparent;
+	border: none;
+	font-size: xx-large;
+	outline: none;
+}
+
+.deleteTaskBtn:hover {
+	color: red;
+}
+table {
+	padding: 0px 2em;
+	width: 100%;
+}
+
+td:nth-child(1),
+td:nth-child(3) {
+	width: 5%;
+	text-align: center;
+}

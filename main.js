@@ -3,54 +3,45 @@ var task = {
     description: '',
 }
 
-var Task = function(description, completed) {
+var Task = function (description, completed) {
     this.description = description;
     this.completed = completed;
 }
-
-Task.prototype.addDescription = function(description) {
-    this.description = description;
-}
-
-Task.prototype.isCompleted = function(completed) {
-    return completed==true;
-}
-
-Task.prototype.setComplete = function(completed) {
+Task.prototype.setComplete = function (completed) {
     this.completed = completed;
 }
 
-Task.prototype.getDescription = function(){
+Task.prototype.getDescription = function () {
     return this.description;
 }
 
-Task.prototype.getCompleted = function(){
+Task.prototype.getCompleted = function () {
     return this.completed;
 }
 
 var descriptionTask = document.getElementById("taskName");
-var buttonAdd = document.getElementById("addTask");
+//Focus the input when initializing
+descriptionTask.focus();
 
+descriptionTask.addEventListener('keyup', function (event) {
+    if (event.code === "Enter") {
+        handleNewTask();
+    };
+});
 
-function listennerButtonAdd() {   
+function handleNewTask() {
     var description = descriptionTask.value;
-    console.log(description);
-    if (!description == "") {
-      var newTask = new Task(description,false);
-      addTask(newTask);
-      descriptionTask.value = '';
-    }
+    //avoid creating the task if the string is empty
+    if (description.trim() === "") return;
+    var newTask = new Task(description, false);
+    addTask(newTask);
+    descriptionTask.value = '';
 }
 
-buttonAdd.addEventListener('click', listennerButtonAdd);
+var buttonAdd = document.getElementById("addTask");
 
-descriptionTask.addEventListener('keydown', function(event) {
-  var description = descriptionTask.value;
-  if (event.key === "Enter" && description !== "") {
-      var newTask = new Task(description,false);
-      addTask(newTask);
-      descriptionTask.value = '';    
-  }
+buttonAdd.addEventListener('click', function () {
+    handleNewTask();
 });
 
 
@@ -60,37 +51,40 @@ function addTask(newTask) {
     row.className = "tasks";
     var checkButton = document.createElement("input");
     checkButton.type = "checkbox";
+    checkButton.title = "Marcar tarea como completada";
     var deleteTask = document.createElement("button");
     deleteTask.innerHTML = "&#10799";
+    deleteTask.className = "deleteTaskBtn"
+    deleteTask.title = "Eliminar Tarea"
     var textDescription = document.createTextNode(newTask.getDescription());
     var columns = [];
-    for(var i = 0; i < 3; i++) {
+    for (var i = 0; i < 3; i++) {
         columns[i] = document.createElement("td");
     }
+
   columns[0].appendChild(checkButton);
   
     var listennerCheckButton = function(){
         newTask.setComplete(!newTask.getCompleted());
         // Here some styles
       columns[1].style = newTask.getCompleted() ? "text-decoration: line-through;" : "text-decoration: none;";
+      checkButton.title = newTask.getCompleted() ? "Marcar tarea como incompleta" : "Marcar tarea como completada"
       columns[0].firstChild.checked = true;
     };
   
   checkButton.addEventListener('change', listennerCheckButton);
   document.getElementById('checkTasks').addEventListener('click', listennerCheckButton);
                                                          
-                                                         columns[1].appendChild(textDescription);
+    columns[1].appendChild(textDescription);
     columns[2].appendChild(deleteTask);
 
-    deleteTask.addEventListener('click', function() {
+    deleteTask.addEventListener('click', function () {
         row.remove();
     })
-    for(var i = 0; i < 3; i++) {
+    for (var i = 0; i < 3; i++) {
         row.appendChild(columns[i]);
     }
     table.appendChild(row);
-
-    
 }
 
 
@@ -107,3 +101,4 @@ removeTaskButton.addEventListener('click', function() {
 // @Test
 //var task1 = new Task("Comprar manzanas", false);
 //console.log(task1);
+
