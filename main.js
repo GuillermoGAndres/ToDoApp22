@@ -50,9 +50,11 @@ function addTask(newTask) {
     var row = document.createElement("tr");
     var checkButton = document.createElement("input");
     checkButton.type = "checkbox";
+    checkButton.title = "Marcar tarea como completada";
     var deleteTask = document.createElement("button");
     deleteTask.innerHTML = "&#10799";
     deleteTask.className = "deleteTaskBtn"
+    deleteTask.title = "Eliminar Tarea"
     var textDescription = document.createTextNode(newTask.getDescription());
     var columns = [];
     for (var i = 0; i < 3; i++) {
@@ -62,9 +64,10 @@ function addTask(newTask) {
     checkButton.addEventListener('change', function () {
         newTask.setComplete(!newTask.getCompleted());
         // Aqui va el estilo
-        console.log(newTask.getCompleted());
-        console.log(textDescription);
+        // console.log(newTask.getCompleted());
+        // console.log(textDescription);
         columns[1].style = newTask.getCompleted() ? "text-decoration: line-through;" : "text-decoration: none;";
+        checkButton.title = newTask.getCompleted() ? "Marcar tarea como incompleta" : "Marcar tarea como completada"
     })
     columns[1].appendChild(textDescription);
     columns[2].appendChild(deleteTask);
