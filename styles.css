@@ -1,25 +1,26 @@
 #addTask {
-	background: rgba(100, 148, 237, 0.418);
+	background: white;
+	color: cornflowerblue;
 	border: none;
 	padding: 8px;
 	border-radius: 5px;
-	color: white;
 	outline: none;
 }
 #addTask:hover,
 #addTask:focus {
-	background: cornflowerblue;
+	background: rgb(240, 240, 240);
 }
 #taskName {
 	outline: none;
-	padding: 5px;
+	padding: 7px;
 	border-radius: 5px;
-	border: rgba(100, 148, 237, 0.418) solid 2px;
+	border: none;
+	/* border: rgba(100, 148, 237, 0.418) solid 2px; */
 }
-#taskName:focus,
+/* #taskName:focus,
 #taskName:hover {
-	border: cornflowerblue solid 2px;
-}
+	border: white solid 2px;
+} */
 
 .deleteTaskBtn {
 	background: transparent;
