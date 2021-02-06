@@ -1,3 +1,9 @@
+var header = document.getElementById("header-content");
+header.style.background = "#117DC6";
+
+var titleApp = document.getElementsByTagName("h1")[0];
+titleApp.style.color = "white";
+titleApp.style.textAlign = "center";
 var task = {
     completed: false,
     description: '',
@@ -48,8 +54,11 @@ function addTask(newTask) {
     var deleteTask = document.createElement("button");
     deleteTask.innerHTML = "&#10799";
     var textDescription = document.createTextNode(newTask.getDescription());
+    var today = new Date();
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var dateAdded = document.createTextNode("Added on " + months[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear() + ' at ' + today.getHours() + ':' + today.getMinutes());
     var columns = [];
-    for(var i = 0; i < 3; i++) {
+    for(var i = 0; i < 4; i++) {
         columns[i] = document.createElement("td");
     }
     columns[0].appendChild(checkButton);
@@ -61,12 +70,16 @@ function addTask(newTask) {
         columns[1].style = newTask.getCompleted() ? "text-decoration: line-through;" : "text-decoration: none;";
     })
     columns[1].appendChild(textDescription);
-    columns[2].appendChild(deleteTask);
+    columns[2].style.color = "gray";
+    columns[2].style.fontSize = 12 + 'px';
+    columns[2].style.fontStyle = "italic";
+    columns[2].appendChild(dateAdded);
+    columns[3].appendChild(deleteTask);
 
     deleteTask.addEventListener('click', function() {
         row.remove();
     })
-    for(var i = 0; i < 3; i++) {
+    for(var i = 0; i < 4; i++) {
         row.appendChild(columns[i]);
     }
     table.appendChild(row);
