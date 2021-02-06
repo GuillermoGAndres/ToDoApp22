@@ -3,16 +3,16 @@ body {
 	font-family: 'Sriracha', cursive;
 	margin: 0;
 }
-#addTask {
+button {
 	background: white;
-	color: cornflowerblue;
+	color: rgb(93, 142, 235);
 	border: none;
 	padding: 8px;
 	border-radius: 5px;
 	outline: none;
 }
-#addTask:hover,
-#addTask:focus {
+button:hover,
+button:focus {
 	background: rgb(240, 240, 240);
 }
 #taskName {
@@ -38,7 +38,7 @@ table {
 }
 
 td:nth-child(1),
-td:nth-child(3) {
+td:nth-child(4) {
 	width: 5%;
 	text-align: center;
 }
