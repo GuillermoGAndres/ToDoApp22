@@ -31,18 +31,33 @@ Task.prototype.getCompleted = function(){
 var descriptionTask = document.getElementById("taskName");
 var buttonAdd = document.getElementById("addTask");
 
-buttonAdd.addEventListener('click', function() {
+
+function listennerButtonAdd() {   
     var description = descriptionTask.value;
     console.log(description);
-    var newTask = new Task(description,false);
-    addTask(newTask);
-    descriptionTask.value = '';
-})
+    if (!description == "") {
+      var newTask = new Task(description,false);
+      addTask(newTask);
+      descriptionTask.value = '';
+    }
+}
+
+buttonAdd.addEventListener('click', listennerButtonAdd);
+
+descriptionTask.addEventListener('keydown', function(event) {
+  var description = descriptionTask.value;
+  if (event.key === "Enter" && description !== "") {
+      var newTask = new Task(description,false);
+      addTask(newTask);
+      descriptionTask.value = '';    
+  }
+});
 
 
 function addTask(newTask) {
     var table = document.getElementById("tasksList");
     var row = document.createElement("tr");
+    row.className = "tasks";
     var checkButton = document.createElement("input");
     checkButton.type = "checkbox";
     var deleteTask = document.createElement("button");
@@ -52,15 +67,19 @@ function addTask(newTask) {
     for(var i = 0; i < 3; i++) {
         columns[i] = document.createElement("td");
     }
-    columns[0].appendChild(checkButton);
-    checkButton.addEventListener('change', function(){
+  columns[0].appendChild(checkButton);
+  
+    var listennerCheckButton = function(){
         newTask.setComplete(!newTask.getCompleted());
-        // Aqui va el estilo
-        console.log(newTask.getCompleted());
-        console.log(textDescription);
-        columns[1].style = newTask.getCompleted() ? "text-decoration: line-through;" : "text-decoration: none;";
-    })
-    columns[1].appendChild(textDescription);
+        // Here some styles
+      columns[1].style = newTask.getCompleted() ? "text-decoration: line-through;" : "text-decoration: none;";
+      columns[0].firstChild.checked = true;
+    };
+  
+  checkButton.addEventListener('change', listennerCheckButton);
+  document.getElementById('checkTasks').addEventListener('click', listennerCheckButton);
+                                                         
+                                                         columns[1].appendChild(textDescription);
     columns[2].appendChild(deleteTask);
 
     deleteTask.addEventListener('click', function() {
@@ -75,10 +94,16 @@ function addTask(newTask) {
 }
 
 
+var removeTaskButton = document.getElementById('removeTasks');
 
+removeTaskButton.addEventListener('click', function() {
+  var tasks = document.getElementsByClassName('tasks');
+  var length = tasks.length;
+  for(var i = 0; i < length; i++) {
+    tasks.item(0).remove();
+  }
+});
 
-
-
-var task1 = new Task("Comprar manzanas", false);
-
-console.log(task1);
+// @Test
+//var task1 = new Task("Comprar manzanas", false);
+//console.log(task1);
