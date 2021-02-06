@@ -31,7 +31,8 @@ descriptionTask.addEventListener('keyup', function (event) {
 
 function handleNewTask() {
     var description = descriptionTask.value;
-    // console.log(description);
+    //avoid creating the task if the string is empty
+    if (description.value.trim() === "") return;
     var newTask = new Task(description, false);
     addTask(newTask);
     descriptionTask.value = '';
