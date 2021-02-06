@@ -3,41 +3,54 @@ var task = {
     description: '',
 }
 
-var Task = function(description, completed) {
+var Task = function (description, completed) {
     this.description = description;
     this.completed = completed;
 }
 
-Task.prototype.addDescription = function(description) {
+Task.prototype.addDescription = function (description) {
     this.description = description;
 }
 
-Task.prototype.isCompleted = function(completed) {
-    return completed==true;
+Task.prototype.isCompleted = function (completed) {
+    return completed == true;
 }
 
-Task.prototype.setComplete = function(completed) {
+Task.prototype.setComplete = function (completed) {
     this.completed = completed;
 }
 
-Task.prototype.getDescription = function(){
+Task.prototype.getDescription = function () {
     return this.description;
 }
 
-Task.prototype.getCompleted = function(){
+Task.prototype.getCompleted = function () {
     return this.completed;
 }
 
 var descriptionTask = document.getElementById("taskName");
-var buttonAdd = document.getElementById("addTask");
+//Focus the input when initializing
+descriptionTask.focus();
 
-buttonAdd.addEventListener('click', function() {
+descriptionTask.addEventListener('keyup', function (event) {
+    if (event.code === "Enter") {
+        handleNewTask();
+    };
+});
+
+function handleNewTask() {
     var description = descriptionTask.value;
-    console.log(description);
-    var newTask = new Task(description,false);
+    // console.log(description);
+    var newTask = new Task(description, false);
     addTask(newTask);
     descriptionTask.value = '';
-})
+}
+
+var buttonAdd = document.getElementById("addTask");
+
+buttonAdd.addEventListener('click', function () {
+    handleNewTask();
+});
 
 
 function addTask(newTask) {
@@ -49,11 +62,11 @@ function addTask(newTask) {
     deleteTask.innerHTML = "&#10799";
     var textDescription = document.createTextNode(newTask.getDescription());
     var columns = [];
-    for(var i = 0; i < 3; i++) {
+    for (var i = 0; i < 3; i++) {
         columns[i] = document.createElement("td");
     }
     columns[0].appendChild(checkButton);
-    checkButton.addEventListener('change', function(){
+    checkButton.addEventListener('change', function () {
         newTask.setComplete(!newTask.getCompleted());
         // Aqui va el estilo
         console.log(newTask.getCompleted());
@@ -63,21 +76,14 @@ function addTask(newTask) {
     columns[1].appendChild(textDescription);
     columns[2].appendChild(deleteTask);
 
-    deleteTask.addEventListener('click', function() {
+    deleteTask.addEventListener('click', function () {
         row.remove();
     })
-    for(var i = 0; i < 3; i++) {
+    for (var i = 0; i < 3; i++) {
         row.appendChild(columns[i]);
     }
     table.appendChild(row);
-
-    
-}
-
-
-
-
-
+};
 
 var task1 = new Task("Comprar manzanas", false);
 
