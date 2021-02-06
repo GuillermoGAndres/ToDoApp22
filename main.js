@@ -7,15 +7,6 @@ var Task = function (description, completed) {
     this.description = description;
     this.completed = completed;
 }
-
-Task.prototype.addDescription = function (description) {
-    this.description = description;
-}
-
-Task.prototype.isCompleted = function (completed) {
-    return completed == true;
-}
-
 Task.prototype.setComplete = function (completed) {
     this.completed = completed;
 }
@@ -60,6 +51,7 @@ function addTask(newTask) {
     checkButton.type = "checkbox";
     var deleteTask = document.createElement("button");
     deleteTask.innerHTML = "&#10799";
+    deleteTask.className = "deleteTaskBtn"
     var textDescription = document.createTextNode(newTask.getDescription());
     var columns = [];
     for (var i = 0; i < 3; i++) {

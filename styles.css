@@ -1,0 +1,33 @@
+#addTask {
+	background: rgba(100, 148, 237, 0.418);
+	border: none;
+	padding: 8px;
+	border-radius: 5px;
+	color: white;
+	outline: none;
+}
+#addTask:hover,
+#addTask:focus {
+	background: cornflowerblue;
+}
+#taskName {
+	outline: none;
+	padding: 5px;
+	border-radius: 5px;
+	border: rgba(100, 148, 237, 0.418) solid 2px;
+}
+#taskName:focus,
+#taskName:hover {
+	border: cornflowerblue solid 2px;
+}
+
+.deleteTaskBtn {
+	background: transparent;
+	border: none;
+	font-size: xx-large;
+	outline: none;
+}
+
+.deleteTaskBtn:hover {
+	color: red;
+}
