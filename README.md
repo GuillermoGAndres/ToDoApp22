@@ -19,6 +19,7 @@ Lista ordenadamente cada tarea que ingresa el usuario, las operaciones que se pu
 ## Contributors
 * PaulinaQuintero
 * GuillermoGAndres 
+* alejandro28100
 * pauvquinterom
 
 
