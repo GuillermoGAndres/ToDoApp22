@@ -9,10 +9,13 @@ var task = {
     description: '',
 }
 
+// Crete object task
 var Task = function (description, completed) {
     this.description = description;
     this.completed = completed;
 }
+
+// Setters and Getters
 Task.prototype.setComplete = function (completed) {
     this.completed = completed;
 }
@@ -29,19 +32,36 @@ var descriptionTask = document.getElementById("taskName");
 //Focus the input when initializing
 descriptionTask.focus();
 
+// Listenner for user input
 descriptionTask.addEventListener('keyup', function (event) {
     if (event.code === "Enter") {
         handleNewTask();
     };
 });
 
+
+// Tasks handler
 function handleNewTask() {
     var description = descriptionTask.value;
-    //avoid creating the task if the string is empty
-    if (description.trim() === "") return;
+    //avoid creating the task if the string is empty or repeted
+    if (description.trim() === "" || isRepeted(description)) return;
     var newTask = new Task(description, false);
     addTask(newTask);
     descriptionTask.value = '';
+}
+
+// Check if the description is repeted
+function isRepeted(description) {
+    var tasks = document.getElementsByClassName("tasks");
+    console.log(tasks);
+
+    var length = tasks.length;
+    for(var i = 0; i < length; i++) {
+        if(description === tasks[i].children[1].innerText) {
+            return true;
+        }
+    }
+    return false;
 }
 
 var buttonAdd = document.getElementById("addTask");
@@ -71,19 +91,23 @@ function addTask(newTask) {
         columns[i] = document.createElement("td");
     }
 
-  columns[0].appendChild(checkButton);
-  
-    var listennerCheckButton = function(){
+    columns[0].appendChild(checkButton);
+
+    var listennerCheckButton = function(event){
+        console.log(event);
+        console.log(event.target.checked)
+
         newTask.setComplete(!newTask.getCompleted());
         // Here some styles
-      columns[1].style = newTask.getCompleted() ? "text-decoration: line-through;" : "text-decoration: none;";
-      checkButton.title = newTask.getCompleted() ? "Marcar tarea como incompleta" : "Marcar tarea como completada"
-      columns[0].firstChild.checked = !columns[0].firstChild.checked;
+        columns[1].style = newTask.getCompleted() ? "text-decoration: line-through;" : "text-decoration: none;";
+        checkButton.title = newTask.getCompleted() ? "Marcar tarea como incompleta" : "Marcar tarea como completada"
+        if (event.type == 'click')
+            columns[0].firstChild.checked = !columns[0].firstChild.checked;
     };
-  
-  checkButton.addEventListener('change', listennerCheckButton);
-  document.getElementById('checkTasks').addEventListener('click', listennerCheckButton);
-                                                         
+
+    checkButton.addEventListener('change', listennerCheckButton);
+    document.getElementById('checkTasks').addEventListener('click', listennerCheckButton);
+
     columns[1].appendChild(textDescription);
     columns[2].style.color = "gray";
     columns[2].style.fontSize = 12 + 'px';
@@ -100,18 +124,13 @@ function addTask(newTask) {
     table.appendChild(row);
 }
 
-
 var removeTaskButton = document.getElementById('removeTasks');
 
+// Remove all tasks
 removeTaskButton.addEventListener('click', function() {
-  var tasks = document.getElementsByClassName('tasks');
-  var length = tasks.length;
-  for(var i = 0; i < length; i++) {
-    tasks.item(0).remove();
-  }
+    var tasks = document.getElementsByClassName('tasks');
+    var length = tasks.length;
+    for(var i = 0; i < length; i++) {
+        tasks.item(0).remove();
+    }
 });
-
-// @Test
-//var task1 = new Task("Comprar manzanas", false);
-//console.log(task1);
-

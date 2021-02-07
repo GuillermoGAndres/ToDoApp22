@@ -1,80 +1,80 @@
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 body {
-	font-family: 'Sriracha', cursive;
-	margin: 0;
+  font-family: 'Sriracha', cursive;
+  margin: 0;
 }
 #addTask {
-	padding: 8px 2.5em;
+  padding: 8px 2.5em;
 }
 #button-container {
-	margin: 15px 0px;
+  margin: 15px 0px;
 }
 button {
-	color: black;
-	border: none;
-	padding: 8px;
-	border-radius: 5px;
-	outline: none;
-	background: rgb(247, 247, 84);
+  color: black;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  outline: none;
+  background: rgb(247, 247, 84);
 }
 button:hover,
 button:focus {
-	filter: brightness(0.8);
+  filter: brightness(0.8);
 }
 button#checkTasks {
-	color: white;
-	background: rgb(88, 221, 88);
+  color: white;
+  background: rgb(88, 221, 88);
 }
 button#removeTasks {
-	color: white;
-	background: rgb(247, 78, 78);
+  color: white;
+  background: rgb(247, 78, 78);
 }
 input#taskName {
-	outline: none;
-	padding: 7px;
-	border-radius: 5px;
-	border: none;
-	width: 40%;
+  outline: none;
+  padding: 7px;
+  border-radius: 5px;
+  border: none;
+  width: 40%;
 }
 
 .deleteTaskBtn {
-	background: transparent;
-	border: none;
-	font-size: xx-large;
-	outline: none;
+  background: transparent;
+  border: none;
+  font-size: xx-large;
+  outline: none;
 }
 
 .deleteTaskBtn:hover {
-	color: red;
+  color: red;
 }
 table {
-	padding: 0px 2em;
-	width: 100%;
-	border-collapse: collapse;
+  padding: 0px 2em;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 td:nth-child(1),
 td:nth-child(4) {
-	width: 5%;
-	text-align: center;
+  width: 5%;
+  text-align: center;
 }
 
 #header-content {
-	margin-bottom: 0;
-	padding-bottom: 1%;
-	padding-top: 1%;
+  margin-bottom: 0;
+  padding-bottom: 1%;
+  padding-top: 1%;
 }
 #header-content h1 {
-	font-size: 45px;
+  font-size: 45px;
 }
 #writeTask {
-	background-color: #117dc6;
-	text-align: center;
-	margin-top: 0;
-	padding-top: 3%;
-	padding-bottom: 4%;
+  background-color: #117dc6;
+  text-align: center;
+  margin-top: 0;
+  padding-top: 3%;
+  padding-bottom: 4%;
 }
 
 tr:nth-child(odd) {
-	background: #bbdcf1;
+  background: #bbdcf1;
 }

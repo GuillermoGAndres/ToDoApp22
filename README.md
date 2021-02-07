@@ -12,7 +12,7 @@ Lista ordenadamente cada tarea que ingresa el usuario, las operaciones que se pu
 * Programacion funcional
 * Manipulacion del Dom
 
-![Imagen de la aplicacion](./img/)
+![Imagen de la aplicacion](.img/todoapp.jpg)
 
 ---
 ## Contributors
